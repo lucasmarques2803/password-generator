@@ -19,11 +19,13 @@
     <button>Copy password</button>
 
     <script>
-        function generatePassword () {
+        let passwordLength = 16
+
+        function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789?!@&*()[]"
             let password = ""
 
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < passwordLength; i++) {
                 const randomNumber = Math.floor(Math.random() * chars.length)
                 password += chars.substring(randomNumber, randomNumber + 1)
             }
@@ -32,7 +34,11 @@
             inputEl.value = password
         }
 
-        generatePassword()
+        const passwordLengthEl = document.querySelector("#password-length")
+        passwordLengthEl.addEventListener("input", () => {
+            passwordLength = passwordLengthEl.value
+            generatePassword()
+        })
     </script>
 </body>
 
